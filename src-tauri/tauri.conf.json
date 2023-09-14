@@ -1,9 +1,9 @@
 {
   "build": {
-    "beforeBuildCommand": "npm run build",
-    "beforeDevCommand": "npm run dev",
-    "devPath": ".",
-    "distDir": "."
+    "beforeBuildCommand": "npm --prefix=./Ecdar-GUI-Web/ run build",
+    "beforeDevCommand": "npm --prefix=./Ecdar-GUI-Web/ run dev",
+    "devPath": "http://localhost:5173",
+    "distDir": "../Ecdar-GUI-Web/build/"
   },
   "package": {
     "productName": "Ecdar",
@@ -15,7 +15,7 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "Utility",
       "copyright": "",
       "deb": {
         "depends": []
@@ -28,7 +28,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "ecdar.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
