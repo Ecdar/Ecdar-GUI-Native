@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeBuildCommand": "npm --prefix=./Ecdar-GUI-Web/ run build",
-    "beforeDevCommand": "npm --prefix=./Ecdar-GUI-Web/ run dev",
+    "beforeBuildCommand": "yarn --cwd=./Ecdar-GUI-Web/ build",
+    "beforeDevCommand": "yarn --cwd=./Ecdar-GUI-Web/ dev",
     "devPath": "http://localhost:5173",
     "distDir": "../Ecdar-GUI-Web/build/"
   },
