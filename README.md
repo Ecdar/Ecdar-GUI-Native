@@ -31,11 +31,22 @@ $ sudo apt install cargo node npm
 
 ### Npm Dependencies
 ```
-$ npm i -g vite
-$ cd Ecdar-GUI-WEB
-$ npm install
-$ cd ..
+$ npm i -g vite yarn
+
 ``` 
+
+### Yarn Dependencies
+```
+$ cd Ecdar-GUI-WEB
+$ yarn install
+$ cd ..
+
+```
+
+### Install cargo
+```
+https://doc.rust-lang.org/cargo/getting-started/installation.html
+```
 ### Cargo dependencies
 ```
 $ cargo install tauri-cli
