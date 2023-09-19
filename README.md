@@ -28,6 +28,18 @@ $ sudo apt install cargo node npm
 #### Mac
 
 #### Windows
+```
+Install cargo
+https://doc.rust-lang.org/cargo/getting-started/installation.html
+
+Install node
+https://nodejs.org/en/download/
+
+update npm
+$ npm i -g npm@latest
+
+While installing dependencies, firewalls might have to be disabled.
+```
 
 ### Npm Dependencies
 ```
@@ -43,13 +55,9 @@ $ cd ..
 
 ```
 
-### Install cargo
-```
-https://doc.rust-lang.org/cargo/getting-started/installation.html
-```
 ### Cargo dependencies
 ```
-$ cargo install tauri-cli
+$ cargo install tauri-cli 
 ```
 ### Run
 #### Dev
