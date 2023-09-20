@@ -3,7 +3,7 @@
 A native implementation of Ecdar-GUI-Web
 
 ## Compile
-Be shure to be in the root folder of the project and follow these steps
+Be sure to be in the root folder of the project and follow these steps
 
 ### Install Dependencies
 
