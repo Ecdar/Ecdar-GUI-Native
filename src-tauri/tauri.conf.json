@@ -3,7 +3,8 @@
     "beforeBuildCommand": "yarn --cwd=./Ecdar-GUI-Web/ build",
     "beforeDevCommand": "yarn --cwd=./Ecdar-GUI-Web/ dev",
     "devPath": "http://localhost:5173",
-    "distDir": "../Ecdar-GUI-Web/build/"
+    "distDir": "../Ecdar-GUI-Web/build/",
+    "withGlobalTauri" : true
   },
   "package": {
     "productName": "Ecdar",
@@ -11,7 +12,24 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+    "dialog": {
+        "ask": false,
+        "confirm": true,
+        "message": false,
+        "open": true,
+        "save": false 
+      },
+      "fs": {
+        "readFile": true,
+        "writeFile": true,
+        "readDir": true,
+        "copyFile": false,
+        "createDir": true,
+        "removeDir": false,
+        "removeFile": false,
+        "renameFile": false,
+        "exists": true
+      }
     },
     "bundle": {
       "active": true,
