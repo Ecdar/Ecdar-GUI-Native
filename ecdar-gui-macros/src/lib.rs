@@ -33,11 +33,11 @@ pub fn generate_handler(other_commands: TokenStream) -> TokenStream {
         ecdar_protobuf_transpiler::compile(|var| format!("{},", var.fn_name)).as_str(),
         other_commands.to_string().as_str()
     )
-    .print()
     .parse()
     .unwrap()
 }
 
+/** For macro debugging **/
 trait Print {
     fn print(self) -> Self;
 }
