@@ -1,30 +1,8 @@
 use ecdar_protobuf_transpiler::CompileVariables;
 use proc_macro::TokenStream as TS;
 
-use convert_case::*;
 use proc_macro2::TokenStream;
 use quote::*;
-/*
-*
-       [
-           format!("#[derive(serde::Serialize, serde::Deserialize)]"),
-           format!("{}", var.in_struct),
-           format!("#[tauri::command]"),
-           format!("async fn {}(payload : {})", var.fn_name, var.in_struct_name),
-           format!("-> Result<{}, GrpcError>{{", var.rtn_struct),
-           format!("Ok("),
-           format!("ecdar_protobuf::services::{}_client::{}Client::connect",
-                   var.service_name.to_case(Case::Snake),
-                   var.service_name.to_case(Case::Pascal)
-           ),
-           format!("(format!(\"http://{{}}\", payload.ip)).await.map_err(|_|GrpcError::FailedToConnect)?"),
-           format!(".{}({}).await.map_err(|_|GrpcError::FailedResponce)?.into_inner()",
-                   var.endpoint_name.to_case(Case::Snake),
-                   if var.in_struct_has_body { "payload.body" } else { "()" }
-           ),
-           format!(")}}"),
-       ].join("\n")
-* */
 
 #[proc_macro]
 pub fn create_functions(_: TS) -> TS {
@@ -65,27 +43,22 @@ pub fn create_functions(_: TS) -> TS {
         }
     });
 
-    let q = quote!(#(#functions)*);
-    println!("{q}");
-
-    q.into()
+    quote!(#(#functions)*).into()
 }
 
 #[proc_macro]
 pub fn generate_handler(other_commands: TS) -> TS {
     let other_commands = TokenStream::from(other_commands);
-    let handlers = ecdar_protobuf_transpiler::compile(|var|{
-        let CompileVariables {
-            fn_name,
-            ..
-        } = var;
+    let handlers = ecdar_protobuf_transpiler::compile(|var| {
+        let CompileVariables { fn_name, .. } = var;
 
         quote!(#fn_name)
     });
 
-    quote!{
+    quote! {
         tauri::generate_handler![#(#handlers),*, #other_commands]
-    }.into()
+    }
+    .into()
 }
 
 /** For macro debugging **/
