@@ -1,40 +1,91 @@
-use proc_macro::TokenStream;
+use ecdar_protobuf_transpiler::CompileVariables;
+use proc_macro::TokenStream as TS;
 
 use convert_case::*;
+use proc_macro2::TokenStream;
+use quote::*;
+/*
+*
+       [
+           format!("#[derive(serde::Serialize, serde::Deserialize)]"),
+           format!("{}", var.in_struct),
+           format!("#[tauri::command]"),
+           format!("async fn {}(payload : {})", var.fn_name, var.in_struct_name),
+           format!("-> Result<{}, GrpcError>{{", var.rtn_struct),
+           format!("Ok("),
+           format!("ecdar_protobuf::services::{}_client::{}Client::connect",
+                   var.service_name.to_case(Case::Snake),
+                   var.service_name.to_case(Case::Pascal)
+           ),
+           format!("(format!(\"http://{{}}\", payload.ip)).await.map_err(|_|GrpcError::FailedToConnect)?"),
+           format!(".{}({}).await.map_err(|_|GrpcError::FailedResponce)?.into_inner()",
+                   var.endpoint_name.to_case(Case::Snake),
+                   if var.in_struct_has_body { "payload.body" } else { "()" }
+           ),
+           format!(")}}"),
+       ].join("\n")
+* */
 
 #[proc_macro]
-pub fn create_functions(_: TokenStream) -> TokenStream {
-    ecdar_protobuf_transpiler::compile(|var|
-        [
-            format!("#[derive(serde::Serialize, serde::Deserialize)]"),
-            format!("{}", var.in_struct),
-            format!("#[tauri::command]"),
-            format!("async fn {}(payload : {})", var.fn_name, var.in_struct_name),
-            format!("-> Result<{}, GrpcError>{{", var.rtn_struct),
-            format!("Ok("),
-            format!("ecdar_protobuf::services::{}_client::{}Client::connect", 
-                    var.service_name.to_case(Case::Snake),
-                    var.service_name.to_case(Case::Pascal)
-            ),
-            format!("(format!(\"http://{{}}\", payload.ip)).await.map_err(|_|GrpcError::FailedToConnect)?"),
-            format!(".{}({}).await.map_err(|_|GrpcError::FailedResponce)?.into_inner()", 
-                    var.endpoint_name.to_case(Case::Snake),
-                    if var.in_struct_has_body { "payload.body" } else { "()" }
-            ),
-            format!(")}}"),
-        ].join("\n")
-    ).parse().unwrap()
+pub fn create_functions(_: TS) -> TS {
+    let functions = ecdar_protobuf_transpiler::compile(|var| {
+        let CompileVariables {
+            in_struct,
+            in_struct_name,
+            in_struct_has_body,
+            rtn_struct,
+            fn_name,
+            client,
+            endpoint_name,
+            ..
+        } = var;
+
+        let payload_body = if in_struct_has_body {
+            quote!(payload.body)
+        } else {
+            quote!(())
+        };
+
+        quote! {
+            #in_struct
+
+            #[tauri::command]
+            async fn #fn_name(payload : #in_struct_name)
+                -> Result<#rtn_struct GrpcError> {
+                let mut client = #client::connect(format!("http://{}", payload.ip))
+                    .await
+                    .map_err(|_| GrpcError::FailedToConnect)?;
+                let res = client
+                    .#endpoint_name(#payload_body)
+                    .await
+                    .map_err(|_| GrpcError::FailedResponce)?
+                    .into_inner();
+                Ok(res)
+            }
+        }
+    });
+
+    let q = quote!(#(#functions)*);
+    println!("{q}");
+
+    q.into()
 }
 
 #[proc_macro]
-pub fn generate_handler(other_commands: TokenStream) -> TokenStream {
-    format!(
-        "tauri::generate_handler![{}{}]",
-        ecdar_protobuf_transpiler::compile(|var| format!("{},", var.fn_name)).as_str(),
-        other_commands.to_string().as_str()
-    )
-    .parse()
-    .unwrap()
+pub fn generate_handler(other_commands: TS) -> TS {
+    let other_commands = TokenStream::from(other_commands);
+    let handlers = ecdar_protobuf_transpiler::compile(|var|{
+        let CompileVariables {
+            fn_name,
+            ..
+        } = var;
+
+        quote!(#fn_name)
+    });
+
+    quote!{
+        tauri::generate_handler![#(#handlers),*, #other_commands]
+    }.into()
 }
 
 /** For macro debugging **/
