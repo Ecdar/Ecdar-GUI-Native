@@ -9,11 +9,6 @@ pub enum GrpcError {
     FailedResponce,
 }
 
-#[derive(serde::Serialize, serde::Deserialize)]
-pub struct In {
-    ip: String,
-}
-
 ecdar_gui_macros::create_functions!();
 
 fn main() {
