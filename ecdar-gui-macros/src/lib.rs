@@ -36,7 +36,7 @@ pub fn create_functions(_: TS) -> TS {
                 let res = client
                     .#endpoint_name(#payload_body)
                     .await
-                    .map_err(|_| GrpcError::FailedResponce)?
+                    .map_err(|_| GrpcError::FailedResponse)?
                     .into_inner();
                 Ok(res)
             }

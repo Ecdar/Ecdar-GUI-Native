@@ -6,7 +6,7 @@ use tauri::Manager;
 #[derive(serde::Serialize, serde::Deserialize)]
 pub enum GrpcError {
     FailedToConnect,
-    FailedResponce,
+    FailedResponse,
 }
 
 ecdar_gui_macros::create_functions!();
