@@ -29,7 +29,7 @@ pub fn create_functions(_: TS) -> TS {
 
             #[tauri::command]
             async fn #fn_name(payload : #in_struct_name)
-                -> Result<#rtn_struct GrpcError> {
+                -> Result<#rtn_struct, GrpcError> {
                 let mut client = #client::connect(format!("http://{}", payload.ip))
                     .await
                     .map_err(|_| GrpcError::FailedToConnect)?;
