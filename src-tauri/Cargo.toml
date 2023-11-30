@@ -19,6 +19,11 @@ serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.4.0", features = [ "dialog-save", "dialog-open", "fs-read-dir", "fs-create-dir", "fs-remove-dir", "fs-read-file", "fs-write-file", "fs-remove-file", "path-all" ] }
 tauri-plugin-persisted-scope = "0.1.3"
+tonic = "0.10.2"
+rand = "0.8.5"
+tokio = "1.33.0"
+ecdar-protobuf = { git = "https://github.com/ECDAR-AAU-SW-P5/Ecdar-ProtoBuf-rs", version = "0.1.0", features = ["client", "serde"] }
+ecdar-gui-macros = { version = "0.1.0", path = "../ecdar-gui-macros" }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
