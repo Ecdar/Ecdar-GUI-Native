@@ -3,15 +3,24 @@
 
 use tauri::Manager;
 
+#[derive(serde::Serialize, serde::Deserialize)]
+pub enum GrpcError {
+    FailedToConnect,
+    FailedResponse,
+}
+
+ecdar_gui_macros::create_functions!();
+
 fn main() {
-  tauri::Builder::default()
-    .setup(|app| {
-        #[cfg(debug_assertions)]
-        {
-            app.get_window("main").unwrap().open_devtools();
-        }
-        Ok(())
-    })
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+    tauri::Builder::default()
+        .setup(|app| {
+            #[cfg(debug_assertions)]
+            {
+                app.get_window("main").unwrap().open_devtools();
+            }
+            Ok(())
+        })
+        .invoke_handler(ecdar_gui_macros::generate_handler![])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }
