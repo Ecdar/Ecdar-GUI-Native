@@ -36,7 +36,7 @@ jobs:
       - name: Checkout submodules
         run: git submodule update --init --recursive
 
-      - run: npm i -g yarn node
+      - run: npm i -g --force yarn node
 
       - name: Install yarn dependencies
         run: yarn --cwd ./Ecdar-GUI-Web install
