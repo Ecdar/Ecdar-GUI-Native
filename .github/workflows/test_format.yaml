@@ -29,7 +29,7 @@ jobs:
     name: Clippy lint and check
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install llvm protobuf-compiler glibc-source libgtk-3-dev libsoup2.4 webkit2gtk-driver javascriptcoregtk-4.0
+      - run: sudo apt-get install llvm protobuf-compiler glibc-source libgtk-3-dev libsoup2.4 webkit2gtk-4.0 javascriptcoregtk-4.0
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
