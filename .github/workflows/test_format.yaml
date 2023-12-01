@@ -50,7 +50,8 @@ jobs:
           cache-on-failure: true
 
       - name: clippy --all-targets --all-features
-        uses: clechasseur/rs-clippy-check@v3
+        uses: actions-rs/clippy-check@v1
         with:
+          token : ${{ secrets.GITHUB_TOKEN }}
           args: --all-targets --all-features -- -D warnings
 
