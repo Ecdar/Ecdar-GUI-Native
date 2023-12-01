@@ -30,6 +30,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sudo apt-get install llvm protobuf-compiler glibc-source libgtk-3-dev libsoup2.4 webkit2gtk-4.0 javascriptcoregtk-4.0
+      - name: Set up Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+      - name: Install dependencies
+        run: yarn --cwd ./Ecdar-GUI-Web install
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
