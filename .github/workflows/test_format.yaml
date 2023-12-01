@@ -29,28 +29,17 @@ jobs:
     name: Clippy lint and check
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install llvm protobuf-compiler glibc-source libgtk-3-dev libsoup2.4 webkit2gtk-4.0 javascriptcoregtk-4.0 
+      - run: sudo apt-get install llvm protobuf-compiler glibc-source libgtk-3-dev libsoup2.4 webkit2gtk-4.0 javascriptcoregtk-4.0 node npm
 
       - uses: actions/checkout@v3
 
       - name: Checkout submodules
         run: git submodule update --init --recursive
 
-      - run: cd ./Ecdar-GUI-Web
-
-      - run: ls
-
-      - name: Set up Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: yarn
+      - run: npm i -g yarn
 
       - name: Install yarn dependencies
-        run: yarn install
-
-      - run: cd ..
-
+        run: yarn --cwd ./Ecdar-GUI-Web install
 
       - uses: dtolnay/rust-toolchain@stable
         with:
