@@ -43,10 +43,5 @@ jobs:
 
       - name: Install yarn dependencies
         run: cd Ecdar-GUI-Web && yarn install
-      
-      - name: Set up Clippy
-        run: |
-        rustup component add clippy
-        export PATH=$PATH:$HOME/.cargo/bin
 
-      - run: clippy --all-targets -- -D warnings
+      - run: cargo clippy --all-targets -- -D warnings
