@@ -31,15 +31,7 @@ jobs:
       # DO NOT EDIT THIS MANUALLY, please only use the official installation instructions from:
       # https://tauri.app/v1/guides/getting-started/prerequisites#setting-up-linux
       - name: Install native Tauri dependencies
-        run: sudo apt-get install libwebkit2gtk-4.0-dev \
-          build-essential \
-          curl \
-          wget \
-          file \
-          libssl-dev \
-          libgtk-3-dev \
-          libayatana-appindicator3-dev \
-          librsvg2-dev
+        run: sudo apt-get install libwebkit2gtk-4.0-dev build-essential curl wget file libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
 
       - name: Install protobuf compiler
         run: sudo apt-get install protobuf-compiler
