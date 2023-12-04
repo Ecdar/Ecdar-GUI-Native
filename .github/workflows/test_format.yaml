@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   fmt:
-    name: cargo fmt check
+    name: Cargo fmt lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,10 +24,9 @@ jobs:
         run: cargo fmt --all -- --check
 
   clippy:
-    name: Clippy lint and check
+    name: Cargo clippy lint
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install protobuf-compiler
 
       - uses: actions/checkout@v4
         with:
