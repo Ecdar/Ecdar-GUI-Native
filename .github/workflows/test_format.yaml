@@ -35,6 +35,7 @@ jobs:
         with:
           node-version: lts/*
           cache: yarn
+          cache-dependency-path: 'Ecdar-GUI-Web/yarn.lock'
 
       - name: Install yarn dependencies
         run: cd Ecdar-GUI-Web && yarn install
