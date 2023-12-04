@@ -27,6 +27,9 @@ jobs:
     name: Cargo clippy lint
     runs-on: ubuntu-latest
     steps:
+      - name: Set up native dependencies
+        run: sudo apt-get install libgtk-3-dev
+
       - uses: actions/checkout@v4
         with:
           submodules: true
