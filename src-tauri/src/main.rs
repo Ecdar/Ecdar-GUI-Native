@@ -13,6 +13,7 @@ ecdar_gui_macros::create_functions!();
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_persisted_scope::init())
         .setup(|app| {
             #[cfg(debug_assertions)]
             {
