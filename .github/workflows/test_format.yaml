@@ -31,8 +31,7 @@ jobs:
       # DO NOT EDIT THIS MANUALLY, please only use the official installation instructions from:
       # https://tauri.app/v1/guides/getting-started/prerequisites#setting-up-linux
       - name: Install native Tauri dependencies
-        run: sudo apt-get install \
-          libwebkit2gtk-4.0-dev \
+        run: sudo apt-get install libwebkit2gtk-4.0-dev \
           build-essential \
           curl \
           wget \
