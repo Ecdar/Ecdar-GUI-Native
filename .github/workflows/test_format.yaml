@@ -44,9 +44,4 @@ jobs:
       - name: Install yarn dependencies
         run: cd Ecdar-GUI-Web && yarn install
 
-      - name: clippy --all-targets --all-features
-        uses: actions-rs/clippy-check@v1
-        with:
-          token : ${{ secrets.GITHUB_TOKEN }}
-          args: --all-targets -- -D warnings
-
+      - run: clippy --all-targets -- -D warnings
