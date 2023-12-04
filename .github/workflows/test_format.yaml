@@ -14,13 +14,10 @@ jobs:
     name: cargo fmt
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install protobuf-compiler
       - uses: actions/checkout@v3
         with:
           submodules: true
       - uses: Swatinem/rust-cache@v2
-        with:
-          cache-on-failure: false
       - run: cargo fmt --all -- --check
 
   clippy:
