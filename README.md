@@ -8,34 +8,42 @@ A native implementation of Ecdar-GUI-Web
 Install `node`, `yarn`, `protobuf` and `cargo`
 
 #### Linux
-###### Arch
-```
-sudo pacman -S cargo nodejs protobuf yarn
-```
 
 ###### Debian
 ```
 sudo apt install cargo nodejs protobuf-compiler yarn
 ```
 
+###### Arch
+```
+sudo pacman -S cargo nodejs protobuf yarn
+```
+
+
 #### Mac
 ```
 brew install protobuf node yarn
 ```
 
+Install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+
 #### Windows
-[Protoc](https://www.geeksforgeeks.org/how-to-install-protocol-buffers-on-windows/)
-[Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
-[Node](https://nodejs.org/en/download)
-[Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+Install [Protoc](https://www.geeksforgeeks.org/how-to-install-protocol-buffers-on-windows/)
+
+Install [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+
+Install [Node](https://nodejs.org/en/download)
+
+Install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 
 
 ### Cargo dependencies
+To run tauri applications some need to install tauri cli
 ```
 cargo install tauri-cli
 ```
 ### Run
-How to Ecdar-GUI-Native
+How to run Ecdar-GUI-Native
 #### Dev
 ```
 cargo tauri dev
@@ -44,8 +52,8 @@ cargo tauri dev
 ```
 cargo tauri build
 ```
-
+In release the executable can be found at
 ###### Mac/Linux
-The executable can be found at `./target/release/ecdar`
+```./target/release/ecdar```
 ###### Windows
-The executable can be found at `.\target\release\ecdar.exe`
+```.\target\release\ecdar.exe```
