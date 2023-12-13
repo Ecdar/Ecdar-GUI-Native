@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeBuildCommand": "yarn --cwd=./Ecdar-GUI-Web/ build",
-    "beforeDevCommand": "yarn --cwd=./Ecdar-GUI-Web/ dev",
+    "beforeBuildCommand": "git submodule update --init --recursive && yarn --cwd=./Ecdar-GUI-Web install && yarn --cwd=./Ecdar-GUI-Web/ build",
+    "beforeDevCommand": "git submodule update --init --recursive && yarn --cwd=./Ecdar-GUI-Web install && yarn --cwd=./Ecdar-GUI-Web/ dev",
     "devPath": "http://localhost:5173",
     "distDir": "../Ecdar-GUI-Web/build/",
     "withGlobalTauri" : true
