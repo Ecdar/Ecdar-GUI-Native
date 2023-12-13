@@ -2,55 +2,50 @@
 
 A native implementation of Ecdar-GUI-Web
 
-## Compile
-Be shure to be in the root folder of the project and follow these steps
 
-### Install Dependencies
+### Install dependencies
 
-
-```
-$ git clone https://github.com/ECDAR-AAU-SW-P5/Ecdar-GUI-Web.git
-```
+Install `node`, `yarn`, `protobuf` and `cargo`
 
 #### Linux
-
-Install `node`, `npm` and `cargo`
 ###### Arch
 ```
-$ sudo pacman -S cargo nodejs npm
+sudo pacman -S cargo nodejs protobuf yarn
 ```
 
 ###### Debian
 ```
-$ sudo apt install cargo node npm 
+sudo apt install cargo nodejs protobuf-compiler yarn
 ```
 
 #### Mac
+```
+brew install protobuf node yarn
+```
 
 #### Windows
+[Protoc](https://www.geeksforgeeks.org/how-to-install-protocol-buffers-on-windows/)
+[Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+[Node](https://nodejs.org/en/download)
+[Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 
-### Npm Dependencies
-```
-$ npm i -g vite
-$ cd Ecdar-GUI-WEB
-$ npm install
-$ cd ..
-``` 
+
 ### Cargo dependencies
 ```
-$ cargo install tauri-cli
+cargo install tauri-cli
 ```
 ### Run
+How to Ecdar-GUI-Native
 #### Dev
 ```
-$ cargo tauri dev
+cargo tauri dev
 ```
 #### Release
 ```
-$ cargo tauri build
+cargo tauri build
 ```
 
 ###### Mac/Linux
-The executable can be found at `./src-tauri/target/release/ecdar`
+The executable can be found at `./target/release/ecdar`
 ###### Windows
-The executable can be found at `.\src-tauri\target\release\ecdar.exe`
+The executable can be found at `.\target\release\ecdar.exe`
