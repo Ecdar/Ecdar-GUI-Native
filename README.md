@@ -5,24 +5,23 @@ A native implementation of Ecdar-GUI-Web
 
 ### Install dependencies
 
-Install `node`, `yarn`, `protobuf` and `cargo`
+Install `node`, `protobuf`, and `cargo`
 
 #### Linux
 
 ###### Debian
 ```
-sudo apt install cargo nodejs protobuf-compiler yarn
+sudo apt install cargo nodejs protobuf-compiler
 ```
 
 ###### Arch
 ```
-sudo pacman -S cargo nodejs protobuf yarn
+sudo pacman -S cargo nodejs protobuf
 ```
-
 
 #### Mac
 ```
-brew install protobuf node yarn
+brew install protobuf node
 ```
 
 Install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
@@ -30,18 +29,26 @@ Install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.htm
 #### Windows
 Install [Protoc](https://www.geeksforgeeks.org/how-to-install-protocol-buffers-on-windows/)
 
-Install [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
-
 Install [Node](https://nodejs.org/en/download)
 
 Install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 
 
 ### Cargo dependencies
-To run tauri applications some need to install tauri cli
+To run tauri applications, some need to install tauri cli
 ```
 cargo install tauri-cli
 ```
+
+### Git dependencies
+To install and initialize all submodules, run
+```
+git submodule update --init --recursive
+```
+
+### Ecdar-GUI-Web dependencies
+Open the `Ecdar-GUI-Web` submodule, and follow its installation instructions to ensure that it can compile itself.
+
 ### Run
 How to run Ecdar-GUI-Native
 #### Dev
