@@ -7,7 +7,7 @@ on:
 jobs:
   build-linux:
     name: Build Linux
-    uses: .github/test.yml
+    needs: test-linux
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
