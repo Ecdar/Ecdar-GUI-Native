@@ -41,6 +41,7 @@ jobs:
           git submodule update --init --recursive
           cd ..
           cargo install tauri-cli
+          cargo tauri build
       - name: cargo fmt --all
         uses: clechasseur/rs-cargo@v1
         with:
