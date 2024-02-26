@@ -32,7 +32,7 @@ $ sudo apt install cargo node npm
 ### Npm Dependencies
 ```
 $ npm i -g vite
-$ cd Ecdar-GUI-WEB
+$ cd Ecdar-GUI-Web
 $ npm install
 $ git submodule update --init --recursive
 $ cd ..
