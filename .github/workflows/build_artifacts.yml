@@ -50,7 +50,7 @@ jobs:
           args: --release
       - uses: actions/upload-artifact@v3
         with:
-          name: ecdar_app-${{ matrix.os }}
+          name: ecdar_app
           path: target/release/ecdar_app
           if-no-files-found: error
           retention-days: 7
