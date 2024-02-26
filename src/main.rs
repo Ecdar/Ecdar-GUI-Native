@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::Manager;
+tonic::include_proto!("ecdar_proto_buf");
 
 #[derive(serde::Serialize, serde::Deserialize)]
 pub enum GrpcError {
@@ -9,7 +10,7 @@ pub enum GrpcError {
     FailedResponse,
 }
 
-ecdar_gui_macros::create_functions!();
+//ecdar_app::create_functions!();
 
 fn main() {
     tauri::Builder::default()
@@ -21,7 +22,7 @@ fn main() {
             }
             Ok(())
         })
-        .invoke_handler(ecdar_gui_macros::generate_handler![])
+        //.invoke_handler(ecdar_app::generate_handler![])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
