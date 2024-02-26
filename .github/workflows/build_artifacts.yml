@@ -6,9 +6,8 @@ on:
 
 jobs:
   build-linux:
-    needs:
-      - test-linux
     name: Build Linux
+    uses: .github/test.yml
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
