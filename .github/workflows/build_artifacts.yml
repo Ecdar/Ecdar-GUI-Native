@@ -6,6 +6,8 @@ on:
 
 jobs:
   build-linux:
+    needs:
+      - test-linux
     name: Build Linux
     runs-on: ubuntu-latest
     steps:
