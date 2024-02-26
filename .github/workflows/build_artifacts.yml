@@ -5,13 +5,9 @@ on:
   push:
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-    name: Build ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,6 +19,25 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           cache-on-failure: true
+      - name: Install deps
+        run: |
+               sudo apt update
+               sudo apt install node npm 
+               sudo apt install libwebkit2gtk-4.0-dev \
+               build-essential \
+               curl \
+               wget \
+               file \
+               libssl-dev \
+               libgtk-3-dev \
+               libayatana-appindicator3-dev \
+               librsvg2-dev
+               npm i -g vite
+               cd Ecdar-GUI-WEB
+               npm install
+               git submodule update --init --recursive
+               cd ..
+               cargo install tauri-cli
       - name: cargo build --release
         uses: clechasseur/rs-cargo@v1
         with:
@@ -31,6 +46,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: ecdar_app-${{ matrix.os }}
-          path: ${{ runner.os == 'Windows' && 'target/release/ecdar_app.exe' || 'target/release/ecdar_app' }}
+          path: target/release/ecdar_app
           if-no-files-found: error
           retention-days: 7

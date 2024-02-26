@@ -3,6 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Ecdar-GUI-Web" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Ecdar-GUI-Web/Ecdar-Common" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Ecdar-GUI-Web/Ecdar-ProtoBuf" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Ecdar-ProtoBuf" vcs="Git" />
   </component>
 </project>
