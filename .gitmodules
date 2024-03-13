@@ -1,7 +1,7 @@
 [submodule "Ecdar-GUI-Web"]
 	path = Ecdar-GUI-Web
-	url = git@github.com:Ecdar/Ecdar-GUI-Web.git
+	url = https://github.com/Ecdar/Ecdar-GUI-Web
 [submodule "Ecdar-ProtoBuf"]
 	path = Ecdar-ProtoBuf
-	url = git@github.com:Ecdar/Ecdar-ProtoBuf.git
+	url = https://github.com/Ecdar/Ecdar-ProtoBuf
 	branch = SW5
