@@ -14,7 +14,7 @@ $ git clone https://github.com/ECDAR-AAU-SW-P5/Ecdar-GUI-Web.git
 
 #### Linux
 
-Install `node`, `npm` and `cargo`
+Install `node`, `npm` and `cargo`, along with [this guide for Tauri](https://tauri.app/v1/guides/getting-started/prerequisites/#setting-up-linux)
 ###### Arch
 ```
 $ sudo pacman -S cargo nodejs npm
@@ -32,8 +32,9 @@ $ sudo apt install cargo node npm
 ### Npm Dependencies
 ```
 $ npm i -g vite
-$ cd Ecdar-GUI-WEB
+$ cd Ecdar-GUI-Web
 $ npm install
+$ git submodule update --init --recursive
 $ cd ..
 ``` 
 ### Cargo dependencies

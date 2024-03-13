@@ -1,0 +1,49 @@
+name: Tests
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  test-linux:
+    name: Tests Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      - uses: arduino/setup-protoc@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install deps
+        run: |
+          git submodule update --init --recursive          
+          sudo apt update
+          sudo apt install libwebkit2gtk-4.0-dev \
+          build-essential \
+          curl \
+          wget \
+          file \
+          libssl-dev \
+          libgtk-3-dev \
+          libayatana-appindicator3-dev \
+          librsvg2-dev
+          npm i -g vite
+          cd Ecdar-GUI-Web
+          npm install
+          git submodule update --init --recursive
+          cd ..
+          cargo install tauri-cli
+      - name: cargo test
+        uses: clechasseur/rs-cargo@v1
+        with:
+          command: test

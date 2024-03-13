@@ -3,7 +3,7 @@
     "beforeBuildCommand": "yarn --cwd=./Ecdar-GUI-Web/ build",
     "beforeDevCommand": "yarn --cwd=./Ecdar-GUI-Web/ dev",
     "devPath": "http://localhost:5173",
-    "distDir": "../Ecdar-GUI-Web/build/",
+    "distDir": "./Ecdar-GUI-Web/build/",
     "withGlobalTauri" : true
   },
   "package": {
